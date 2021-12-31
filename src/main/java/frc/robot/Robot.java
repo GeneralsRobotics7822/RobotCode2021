@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 //import frc.robot.commands.Drive_command;
 //import frc.robot.commands.HookCommand;
 //import frc.robot.subsystems.HookSubsystem;
@@ -35,6 +36,8 @@ import frc.robot.subsystems.DriveSubsystem;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public static DriveSubsystem driving = new DriveSubsystem();
+  public static AutonomousSubsystem auto = new AutonomousSubsystem();
+  public static Timer autoTimer = new Timer(); 
   private RobotContainer m_robotContainer;
   //public static PixyAlignSubsystem align = new PixyAlignSubsystem();
 
