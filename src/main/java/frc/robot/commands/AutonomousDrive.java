@@ -5,11 +5,13 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
+//import jdk.vm.ci.meta.Constant;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 //import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.RobotContainer;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.AutonomousSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -24,7 +26,7 @@ public class AutonomousDrive extends CommandBase {
   public AutonomousDrive(AutonomousSubsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.auto);
+   addRequirements(Robot.auto);
   }
 
   // Called when the command is initially scheduled.
@@ -46,24 +48,24 @@ public class AutonomousDrive extends CommandBase {
     SpeedControllerGroup rightmg = new SpeedControllerGroup(AutonomousSubsystem.rmotor1, AutonomousSubsystem.rmotor2);
     leftmg.setInverted(true);//Flip left motor to get it going the right direction
     //slow-mode for demos
-    //Robot.driving.RichardDrives(leftmg, rightmg, .25*OI.logitech.getRawAxis(1), -.25*OI.logitech.getRawAxis(4));
+    Robot.driving.SarahDrives(leftmg, rightmg, .25*Constants.logitech.getRawAxis(1), -.25*Constants.logitech.getRawAxis(4));
     
     // if(LeftStart){
-    //   Robot.driving.RichardDrives(leftmg, rightmg, OI.logitech.getRawAxis(1), -OI.logitech.getRawAxis(4));
+    //   Robot.driving.SarahDrives(leftmg, rightmg, OI.logitech.getRawAxis(1), -OI.logitech.getRawAxis(4));
     // }
     //else if(MiddleStart){
       //Robot.auto.AutonomousStart(leftmg, rightmg);
       //timer.start();
-      if(yBtn)
-      {
-        pixyMode=true;
-      }
-      Robot.auto.TimedDistance(leftmg, rightmg, Robot.autoTimer);
+      //if(yBtn)
+      //{
+     //   pixyMode=true;
+     // }
+     // Robot.auto.TimedDistance(leftmg, rightmg, Robot.autoTimer);
      // Robot.auto.TimedDistance(leftmg, rightmg);
     //}
     // else if(RightStart)
     // {
-    //   Robot.driving.RichardDrives(leftmg, rightmg, 0, -.8*OI.joystick.getRawAxis(1));
+    //   Robot.driving.SarahDrives(leftmg, rightmg, 0, -.8*OI.joystick.getRawAxis(1));
     // }
     // else{//Normal Driving
     //  Robot.driving.LeftMotorStrength(leftmg, rightmg);
