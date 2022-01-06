@@ -6,7 +6,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.*;
 import frc.robot.commands.AutonomousDrive;
 import edu.wpi.first.wpilibj.drive.*;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class AutonomousSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public static Victor lmotor1= Constants.leftMotor1; //reset
-public static Victor lmotor2= Constants.leftMotor2;
-public static Victor rmotor1 = Constants.rightMotor1;
-public static Victor rmotor2 = Constants.rightMotor2;
+  public static Victor lmotor2= Constants.leftMotor2;
+  public static Victor rmotor1 = Constants.rightMotor1;
+  public static Victor rmotor2 = Constants.rightMotor2;
 
   public AutonomousSubsystem() {}
 
@@ -58,7 +58,7 @@ public static Victor rmotor2 = Constants.rightMotor2;
     lmg.set(0);
     rmg.set(0.8);
   }
-  public void Drives(SpeedControllerGroup lmg, SpeedControllerGroup rmg, double power, double direction)
+  public void SarahDrives(SpeedControllerGroup lmg, SpeedControllerGroup rmg, double power, double direction)
   {//Main Drive command
     //Squared:
     //lmg.set(Math.max(-power+direction,-1)*Math.abs(Math.max(-power+direction,-1))); 
