@@ -14,7 +14,7 @@ import frc.robot.Main;
 import frc.robot.RobotContainer;
 
 /** An example command that uses an example subsystem. */
-public class SarahDrive extends CommandBase {
+public class DriveHub extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem m_subsystem;
 
@@ -24,7 +24,7 @@ public class SarahDrive extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   
-  public SarahDrive(DriveSubsystem subsystem) {
+  public DriveHub(DriveSubsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.driving);

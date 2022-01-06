@@ -15,6 +15,7 @@ public class DriveSubsystem extends SubsystemBase {
   public static Victor lmotor2= Constants.leftMotor2;
   public static Victor rmotor1 = Constants.rightMotor1;
   public static Victor rmotor2 = Constants.rightMotor2;
+  
   public static SpeedControllerGroup leftmg = new SpeedControllerGroup(lmotor1, lmotor2);
   public static SpeedControllerGroup rightmg = new SpeedControllerGroup(rmotor1, rmotor2);
   
@@ -48,6 +49,11 @@ public void StandardDrive(SpeedControllerGroup lmg, SpeedControllerGroup rmg)
   {
     lmg.set(0.5);
     rmg.set(0.5);
+  }
+  public void StandardReverse(SpeedControllerGroup lmg, SpeedControllerGroup rmg)
+  {
+    lmg.set(-0.5);
+    rmg.set(-0.5);
   }
   
   @Override
