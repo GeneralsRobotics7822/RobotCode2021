@@ -55,7 +55,18 @@ public void StandardDrive(SpeedControllerGroup lmg, SpeedControllerGroup rmg)
     lmg.set(-0.5);
     rmg.set(-0.5);
   }
-  
+  public void StandardLeft(SpeedControllerGroup lmg, SpeedControllerGroup rmg)
+  {
+    lmg.set(-0.5);
+    rmg.set(0.5);
+  }
+  public void StandardRight(SpeedControllerGroup lmg, SpeedControllerGroup rmg)
+  {
+    lmg.set(0.5);
+    rmg.set(-0.5);
+  }
+
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
