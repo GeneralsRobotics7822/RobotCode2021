@@ -4,18 +4,18 @@
 
 package frc.robot;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.DrivingTester;
-import frc.robot.subsystems.AutonomousSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.commands.DrivingTester;
+import edu.wpi.first.wpilibj.*;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -23,12 +23,13 @@ import frc.robot.commands.DrivingTester;
  * project.
  */
 public class Robot extends TimedRobot {
+  SpeedControllerGroup leftmg = new SpeedControllerGroup(DriveSubsystem.lmotor1, DriveSubsystem.lmotor2);//Two Groups of Motor Intiaited
+    SpeedControllerGroup rightmg = new SpeedControllerGroup(DriveSubsystem.rmotor1, DriveSubsystem.rmotor2);
+  private final DifferentialDrive m_robotDrive = new DifferentialDrive(leftmg, rightmg);
   private Command m_autonomousCommand;
   public static DriveSubsystem driving = new DriveSubsystem();
-  public static AutonomousSubsystem auto = new AutonomousSubsystem();
   public static Timer autoTimer = new Timer(); 
   private RobotContainer m_robotContainer;
-  public static UsbCamera camera1;
   static long autoDriveTime; 
 
   /**
@@ -40,7 +41,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    CameraServer.getInstance().startAutomaticCapture(0);
+   // CameraServer.getInstance().startAutomaticCapture(0);
   }
 
   /**
@@ -59,10 +60,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
- 
- 
-    
-  
+
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
@@ -76,35 +74,25 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    autoDriveTime = System.currentTimeMillis();
-    //m_autonomousCommand = m_robotContainer.getAutonomous();
-    // schedule the autonomous command (example)
-   if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-     }
+    autoTimer.reset();
+    autoTimer.start();
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();
-      Constants.leftMotor1.setSpeed(0.25);
-      Constants.leftMotor2.setSpeed(0.25);
-      Constants.rightMotor1.setSpeed(-0.25);
-      Constants.rightMotor2.setSpeed(-0.25);
-     
+      // Drive for 2 seconds
+      if (autoTimer.get() < 2.0) {
+        m_robotDrive.arcadeDrive(0.5, 0.0); // drive forwards half speed
+      } else {
+        m_robotDrive.stopMotor(); // stop robot
+      }
   }
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
     Robot.driving.setDefaultCommand(new DrivingTester(null));
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
   }
 
   /** This function is called periodically during operator control. */

@@ -40,7 +40,7 @@ public class DrivingTester extends CommandBase {
   public void execute() {
     SpeedControllerGroup leftmg = new SpeedControllerGroup(DriveSubsystem.lmotor1, DriveSubsystem.lmotor2);//Two Groups of Motor Intiaited
     SpeedControllerGroup rightmg = new SpeedControllerGroup(DriveSubsystem.rmotor1, DriveSubsystem.rmotor2);
-
+/*
     if (Constants.rt<= -0.5){
         Robot.driving.StandardDrive(leftmg, rightmg);
         System.out.print("forward");
@@ -57,7 +57,8 @@ public class DrivingTester extends CommandBase {
       Robot.driving.stop();
       System.out.print("stopped");
     }
-    /*
+    */
+    
     if(Constants.yButton){
       Robot.driving.StandardDrive(leftmg, rightmg);
         System.out.print("forward");
@@ -80,7 +81,6 @@ public class DrivingTester extends CommandBase {
       Robot.driving.stop();
       System.out.print("stopped");
     }
-*/
   }
 
   // Called once the command ends or is interrupted.
