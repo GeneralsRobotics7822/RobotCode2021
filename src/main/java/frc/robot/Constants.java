@@ -30,5 +30,6 @@ public final class Constants {
     public static boolean xButton = logitech.getXButton();
     public static boolean yButton = logitech.getYButton();
     public static boolean bButton = logitech.getBButton();
+    public static boolean rBumper = logitech.getBumper(GenericHID.Hand.kRight);
 }
 

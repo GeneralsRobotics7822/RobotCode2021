@@ -48,8 +48,21 @@ public class AutonomousDrive extends CommandBase {
     SpeedControllerGroup rightmg = new SpeedControllerGroup(AutonomousSubsystem.rmotor1, AutonomousSubsystem.rmotor2);
     leftmg.setInverted(true);//Flip left motor to get it going the right direction
     //slow-mode for demos
-    Robot.driving.SarahDrives(leftmg, rightmg, .25*Constants.logitech.getRawAxis(1), -.25*Constants.logitech.getRawAxis(4));
-    
+   // Robot.driving.SarahDrives(leftmg, rightmg, .25*Constants.logitech.getRawAxis(1), -.25*Constants.logitech.getRawAxis(4));
+   Timer timer = Robot.autoTimer; //timer works in microseconds
+   if(timer.get()<5)
+   {
+   leftmg.set(0.25);
+   rightmg.set(0.25);
+   System.out.print("forward");
+   }
+   else
+   {
+   leftmg.set(0);
+   rightmg.set(0);
+   System.out.print("stopped");
+   }
+   }
     // if(LeftStart){
     //   Robot.driving.SarahDrives(leftmg, rightmg, OI.logitech.getRawAxis(1), -OI.logitech.getRawAxis(4));
     // }

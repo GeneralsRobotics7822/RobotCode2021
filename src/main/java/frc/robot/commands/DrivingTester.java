@@ -14,12 +14,11 @@ import frc.robot.Main;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
-
 /** An example command that uses an example subsystem. */
 public class DrivingTester extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveSubsystem m_subsystem;
-  
+
   /**
    * Creates a new ExampleCommand.
    */
@@ -40,13 +39,13 @@ public class DrivingTester extends CommandBase {
   @Override
   public void execute() {
     SpeedControllerGroup leftmg = new SpeedControllerGroup(DriveSubsystem.lmotor1, DriveSubsystem.lmotor2);//Two Groups of Motor Intiaited
-      SpeedControllerGroup rightmg = new SpeedControllerGroup(DriveSubsystem.rmotor1, DriveSubsystem.rmotor2);
-   
-      if (Constants.lt>0.5){
+    SpeedControllerGroup rightmg = new SpeedControllerGroup(DriveSubsystem.rmotor1, DriveSubsystem.rmotor2);
+
+    if (Constants.rt<= -0.5){
         Robot.driving.StandardDrive(leftmg, rightmg);
         System.out.print("forward");
     }
-    if (Constants.rt>0.5){
+    if (Constants.lt>=0.5){
       Robot.driving.StandardReverse(leftmg, rightmg);
       System.out.print("back");
     }
@@ -54,10 +53,34 @@ public class DrivingTester extends CommandBase {
       Robot.driving.stop();
       System.out.print("stopped");
     }
-    if (Constants.rt<0.5){
+    if (Constants.rt> -0.5){
       Robot.driving.stop();
       System.out.print("stopped");
     }
+    /*
+    if(Constants.yButton){
+      Robot.driving.StandardDrive(leftmg, rightmg);
+        System.out.print("forward");
+    }
+    if(Constants.aButton){
+      Robot.driving.StandardReverse(leftmg, rightmg);
+      System.out.print("back");
+    }
+    if(Constants.xButton){
+      Robot.driving.StandardLeft(leftmg, rightmg);
+      System.out.print("left");
+    }
+
+    if(Constants.bButton){
+      Robot.driving.StandardRight(leftmg, rightmg);
+      System.out.print("right");
+    }
+
+    if(Constants.rBumper){
+      Robot.driving.stop();
+      System.out.print("stopped");
+    }
+*/
   }
 
   // Called once the command ends or is interrupted.
