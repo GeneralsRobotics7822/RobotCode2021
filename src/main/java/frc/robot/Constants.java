@@ -22,14 +22,5 @@ public final class Constants {
     public static Victor rightMotor1 = new Victor(1);
     public static Victor rightMotor2 = new Victor(3);
     public static XboxController logitech = new XboxController(0); 
-    final JoystickButton  lTrigger = new JoystickButton(logitech, 6);
-    final JoystickButton  rTrigger = new JoystickButton(logitech, 9);
-    public static double rt = logitech.getTriggerAxis(GenericHID.Hand.kRight);
-    public static double lt = logitech.getTriggerAxis(GenericHID.Hand.kLeft);
-    public static boolean aButton = logitech.getAButton();
-    public static boolean xButton = logitech.getXButton();
-    public static boolean yButton = logitech.getYButton();
-    public static boolean bButton = logitech.getBButton();
-    public static boolean rBumper = logitech.getBumper(GenericHID.Hand.kRight);
 }
 

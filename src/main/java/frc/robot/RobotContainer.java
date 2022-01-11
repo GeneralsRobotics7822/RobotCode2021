@@ -20,8 +20,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static XboxController logitech = new XboxController(0);//Logitech Controller on port 0
-  double rt = logitech.getTriggerAxis(GenericHID.Hand.kRight);
-  double lt = logitech.getTriggerAxis(GenericHID.Hand.kLeft);
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -40,8 +38,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    final JoystickButton  lTrigger = new JoystickButton(logitech, 6);
-    final JoystickButton  rTrigger = new JoystickButton(logitech, 9);
+ 
   }
 
   /**
