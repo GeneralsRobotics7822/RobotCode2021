@@ -8,12 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.commands.DrivingTester;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.commands.DrivingTester;
 import edu.wpi.first.wpilibj.*;
 
 /**
@@ -31,6 +29,7 @@ public class Robot extends TimedRobot {
   public static Timer autoTimer = new Timer(); 
   private RobotContainer m_robotContainer;
   static long autoDriveTime; 
+  public static XboxController logitech = new XboxController(0); 
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -84,7 +83,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
       // Drive for 2 seconds
       if (autoTimer.get() < 2.0) {
-        m_robotDrive.arcadeDrive(0.5, 0.0); // drive forwards half speed
+        m_robotDrive.arcadeDrive(-0.5, 0.0); // drive forwards half speed
       } else {
         m_robotDrive.stopMotor(); // stop robot
       }
@@ -92,14 +91,42 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    Robot.driving.setDefaultCommand(new DrivingTester(null));
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
+    
+    
+    if(logitech.getAButtonPressed()){
+      m_robotDrive.arcadeDrive(0.5, 0.0);
+    }
+    if(logitech.getYButtonPressed()){
+      m_robotDrive.arcadeDrive(-0.5, 0.0);
+    }
+    if(logitech.getXButtonPressed()){
+      m_robotDrive.arcadeDrive(0.0, 0.5);
+    }
+    if(logitech.getBButtonPressed()){
+      m_robotDrive.arcadeDrive(0.0, -0.5);
+    }
+
+
+    if(logitech.getAButtonReleased()){
+      m_robotDrive.stopMotor();
+    }
+    if(logitech.getYButtonReleased()){
+      m_robotDrive.stopMotor();
+    }
+    if(logitech.getXButtonReleased()){
+      m_robotDrive.stopMotor();
+    }
+    if(logitech.getBButtonReleased()){
+      m_robotDrive.stopMotor();
+    }
   }
+
 
   @Override
   public void testInit() {
