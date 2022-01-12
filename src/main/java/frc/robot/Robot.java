@@ -106,38 +106,26 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     m_robotDrive.arcadeDrive(logitech.getY(Hand.kLeft)*.5, logitech.getX(Hand.kLeft)*.5);
 
-    if(logitech.getXButton())
-    {
-        intake.setSpeed(-0.6);
-        elevator.setSpeed(0);
-        shooter.setSpeed(0);
+    if (logitech.getY(Hand.kRight)==-1){
+      intake.setSpeed(0);
+      elevator.setSpeed(-0.6);
     }
-    
-    if(logitech.getYButton())
-      {
-        intake.setSpeed(0);
-        elevator.setSpeed(-0.6);
-      }
+    if (logitech.getY(Hand.kRight)==1){
+      elevator.setSpeed(0.6);
+    }
+    if (logitech.getX(Hand.kRight)==-1){
+      intake.setSpeed(-0.6);
+      elevator.setSpeed(0);
+      shooter.setSpeed(0);
 
-    if(logitech.getAButton())
-    {      
+    }
+    if (logitech.getX(Hand.kRight)==1){
       intake.setSpeed(0);
       elevator.setSpeed(0);
       shooter.setSpeed(-0.75);
     }
-    if(logitech.getBButton())
-    {
-      intake.setSpeed(0);
-      elevator.setSpeed(0);
-      shooter.setSpeed(0);
-    }
-    if(logitech.getBumper(Hand.kLeft))
-    {
-      elevator.setSpeed(0.6);
-    }
 
   }
-
 
   @Override
   public void testInit() {
