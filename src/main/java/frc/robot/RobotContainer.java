@@ -41,10 +41,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton joystickButtonY = new JoystickButton(logitech, 4);
-    JoystickButton joystickButtonA = new JoystickButton(logitech, 4);
-    JoystickButton joystickButtonX = new JoystickButton(logitech, 1);
-    JoystickButton joystickButtonB = new JoystickButton(logitech, 2);
+
   }
 
   /**

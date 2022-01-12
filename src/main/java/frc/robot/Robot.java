@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.*;
  */
 public class Robot extends TimedRobot {
   SpeedControllerGroup leftmg = new SpeedControllerGroup(DriveSubsystem.lmotor1, DriveSubsystem.lmotor2);//Two Groups of Motor Intiaited
-    SpeedControllerGroup rightmg = new SpeedControllerGroup(DriveSubsystem.rmotor1, DriveSubsystem.rmotor2);
+  SpeedControllerGroup rightmg = new SpeedControllerGroup(DriveSubsystem.rmotor1, DriveSubsystem.rmotor2);
   private final DifferentialDrive m_robotDrive = new DifferentialDrive(leftmg, rightmg);
   private Command m_autonomousCommand;
   public static DriveSubsystem driving = new DriveSubsystem();
@@ -32,8 +32,10 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   static long autoDriveTime; 
   public static XboxController logitech = new XboxController(0);
-  public double yAxis = logitech.getY(Hand.kLeft);
-  public double xAxis = logitech.getX(Hand.kLeft);
+  public static Victor intake = Constants.intakeMotor;
+  public static Victor elevator= Constants.elevatorMotor;
+  public static Victor shooter= Constants.shootMotor;
+
 
 
   /**
@@ -102,8 +104,38 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    m_robotDrive.arcadeDrive(yAxis, xAxis);
+    m_robotDrive.arcadeDrive(logitech.getY(Hand.kLeft)*.5, logitech.getX(Hand.kLeft)*.5);
+
+    if(logitech.getXButton())
+    {
+        intake.setSpeed(-0.6);
+        elevator.setSpeed(0);
+        shooter.setSpeed(0);
+    }
     
+    if(logitech.getYButton())
+      {
+        intake.setSpeed(0);
+        elevator.setSpeed(-0.6);
+      }
+
+    if(logitech.getAButton())
+    {      
+      intake.setSpeed(0);
+      elevator.setSpeed(0);
+      shooter.setSpeed(-0.75);
+    }
+    if(logitech.getBButton())
+    {
+      intake.setSpeed(0);
+      elevator.setSpeed(0);
+      shooter.setSpeed(0);
+    }
+    if(logitech.getBumper(Hand.kLeft))
+    {
+      elevator.setSpeed(0.6);
+    }
+
   }
 
 

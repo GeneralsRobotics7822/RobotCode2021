@@ -21,6 +21,13 @@ public final class Constants {
     public static Victor leftMotor2 = new Victor(2);
     public static Victor rightMotor1 = new Victor(1);
     public static Victor rightMotor2 = new Victor(3);
+    public static Victor shootMotor = new Victor(7);
+    public static Victor intakeMotor= new Victor(8);
+    public static Victor elevatorMotor = new Victor(9);
+    public static Victor hookUpMotor = new Victor(6);
+    public static Victor robotUpMotor = new Victor(4);
+
+    
     public static XboxController logitech = new XboxController(0); 
 }
 
